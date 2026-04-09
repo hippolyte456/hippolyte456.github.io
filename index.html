@@ -1,18 +1,90 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon site perso</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hippolyte Dreyfus</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Bienvenue sur mon site</h1>
-    <p>Je centralise ici mes différents projets et activités.</p>
 
-    <ul>
-        <li><a href="/wing4all">Wing4All</a></li>
-        <li><a href="/openhab">OpenHAB</a></li>
-        <li><a href="/piano">Piano</a></li>
-    </ul>
+  <!-- Navigation -->
+  <header>
+    <nav class="navbar">
+      <a href="#" class="nav-logo">Hippolyte Dreyfus</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Hi there! 👋</h1>
+      <p>
+        I'm <strong>Hippolyte Dreyfus</strong>, a research engineer and project builder
+        working at the intersection of neuroscience, technology and impact-driven entrepreneurship.
+      </p>
+      <a href="#projects" class="btn">Explore my projects</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About me</h2>
+    <p>
+      I combine scientific rigor and hands-on building to create meaningful projects.
+      Whether it's crunching data in a lab, shaping a startup idea, or designing open-source tools,
+      I'm always looking for people who want to get involved in new ventures.
+    </p>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>Current activities</h2>
+    <div class="cards">
+
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <h3>Research Engineering</h3>
+        <p>Scientific computing, data analysis and technical development in neuroscience.</p>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🌊</span>
+        <h3>Wing4All</h3>
+        <p>Wingfoil school, rental and project development on the water.</p>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🏡</span>
+        <h3>OpenHabitat</h3>
+        <p>Open-source tools for self-construction and habitat design.</p>
+      </div>
+
+      <div class="card">
+        <span class="card-icon">🧠</span>
+        <h3>DeepConnexion</h3>
+        <p>Reflections and projects around learning, cognition and human connection.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Get in touch</h2>
+    <p>Always open to new collaborations and conversations.</p>
+    <a href="mailto:contact@hippolyte.dev" class="btn">Send me an email</a>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Hippolyte Dreyfus · <a href="https://github.com/hippolyte456" target="_blank">GitHub</a></p>
+  </footer>
+
 </body>
 </html>
