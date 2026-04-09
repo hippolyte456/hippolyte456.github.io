@@ -77,7 +77,6 @@ header {
 ══════════════════════════════ */
 .banner-research {
   background: linear-gradient(135deg, #111422 0%, #0f1117 100%);
-  border-bottom: 3px solid var(--c-research);
 }
 
 .banner-inner {
@@ -138,7 +137,6 @@ header {
    ② – ④ PROJECT SECTIONS
 ══════════════════════════════ */
 .project-section {
-  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 .project-section.alt {
@@ -156,9 +154,9 @@ header {
 #passion    .section-label { color: var(--c-passion); }
 #psychiatrie .section-label { color: var(--c-psychiatrie); }
 
-#lifestyle  { border-left: 4px solid var(--c-lifestyle); }
-#passion    { border-left: 4px solid var(--c-passion); }
-#psychiatrie{ border-left: 4px solid var(--c-psychiatrie); }
+#lifestyle   { }
+#passion     { }
+#psychiatrie { }
 
 .section-label {
   display: block;
@@ -228,7 +226,6 @@ header {
    #RESEARCH SECTION
 ══════════════════════════════ */
 #research {
-  border-left: 4px solid var(--c-research);
 }
 
 .research-grid {
@@ -342,7 +339,6 @@ header {
    #PROJECTS SECTION
 ══════════════════════════════ */
 #projects {
-  border-left: none;
 }
 
 #projects .section-inner {
