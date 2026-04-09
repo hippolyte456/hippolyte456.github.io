@@ -174,8 +174,8 @@ header {
   min-height: 1.5rem;
 }
 
-/* Séparateur bleu entre toutes les sections */
-section {
+/* Séparateur bleu entre chaque section */
+section + section {
   border-top: 2px solid var(--c-research);
 }
 
@@ -324,7 +324,6 @@ section {
   font-size: 0.875rem;
   color: var(--muted);
   min-height: 1.2rem;
-}
 }
 
 /* Toolbar */
