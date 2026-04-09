@@ -12,12 +12,16 @@
   --text: #e2e8f0;
   --muted: #8892a4;
   --radius: 12px;
-  --max-w: 900px;
+  --max-w: 960px;
+
+  /* couleurs par section */
+  --c-research: #6c8eff;
+  --c-lifestyle: #4caf82;
+  --c-passion:   #f2994a;
+  --c-psychiatrie: #a78bfa;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
   background: var(--bg);
@@ -26,22 +30,16 @@ body {
   line-height: 1.7;
 }
 
-a {
-  color: var(--accent);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
 /* ── Navbar ── */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(15, 17, 23, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(15, 17, 23, 0.88);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
@@ -56,7 +54,7 @@ header {
 
 .nav-logo {
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text);
 }
 
@@ -68,78 +66,132 @@ header {
 
 .nav-links a {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   transition: color 0.2s;
 }
 
-.nav-links a:hover {
-  color: var(--text);
-  text-decoration: none;
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+
+/* ══════════════════════════════
+   ① RESEARCH BANNER
+══════════════════════════════ */
+.banner-research {
+  background: linear-gradient(135deg, #111422 0%, #0f1117 100%);
+  border-bottom: 3px solid var(--c-research);
 }
 
-/* ── Sections ── */
-section {
+.banner-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 5rem 1.5rem;
+  padding: 5rem 1.5rem 4rem;
 }
 
-section h2 {
-  font-size: 1.6rem;
-  margin-bottom: 1.2rem;
-  color: var(--text);
-}
-
-section p {
-  color: var(--muted);
-  max-width: 640px;
-}
-
-/* ── Hero ── */
-#hero {
-  padding-top: 8rem;
-  padding-bottom: 6rem;
-}
-
-#hero h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
-  font-weight: 800;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-#hero p {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-  max-width: 560px;
-}
-
-/* ── Button ── */
-.btn {
-  display: inline-block;
-  padding: 0.65rem 1.4rem;
-  background: var(--accent);
-  color: #fff;
-  border-radius: var(--radius);
+.banner-meta {
+  font-size: 0.8rem;
   font-weight: 600;
-  font-size: 0.95rem;
-  transition: opacity 0.2s;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-research);
+  margin-bottom: 0.75rem;
 }
 
-.btn:hover {
-  opacity: 0.85;
-  text-decoration: none;
+.banner-inner h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
 }
 
-/* ── Cards ── */
-.cards {
+.banner-desc {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 620px;
+  margin-bottom: 1.75rem;
+  min-height: 1.5rem; /* espace réservé quand vide */
+}
+
+/* Tags technos */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.tag {
+  background: rgba(108, 142, 255, 0.12);
+  border: 1px solid rgba(108, 142, 255, 0.3);
+  color: var(--c-research);
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.banner-body {
+  color: var(--muted);
+  max-width: 680px;
+  min-height: 1.5rem;
+}
+
+/* ══════════════════════════════
+   ② – ④ PROJECT SECTIONS
+══════════════════════════════ */
+.project-section {
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.project-section.alt {
+  background: rgba(255,255,255,0.015);
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* label coloré par section */
+#lifestyle  .section-label { color: var(--c-lifestyle); }
+#passion    .section-label { color: var(--c-passion); }
+#psychiatrie .section-label { color: var(--c-psychiatrie); }
+
+#lifestyle  { border-left: 4px solid var(--c-lifestyle); }
+#passion    { border-left: 4px solid var(--c-passion); }
+#psychiatrie{ border-left: 4px solid var(--c-psychiatrie); }
+
+.section-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  min-height: 1.8rem;
+}
+
+.section-intro {
+  color: var(--muted);
+  max-width: 580px;
+  margin-bottom: 2rem;
+  min-height: 1.5rem;
+}
+
+/* Project cards grid */
+.project-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 1.25rem;
-  margin-top: 1.5rem;
 }
 
-.card {
+.project-card {
   background: var(--surface);
   border: 1px solid rgba(255,255,255,0.06);
   border-radius: var(--radius);
@@ -147,31 +199,29 @@ section p {
   transition: transform 0.2s, border-color 0.2s;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
-}
+#lifestyle  .project-card:hover { border-color: var(--c-lifestyle);  transform: translateY(-3px); }
+#passion    .project-card:hover { border-color: var(--c-passion);    transform: translateY(-3px); }
+#psychiatrie .project-card:hover{ border-color: var(--c-psychiatrie);transform: translateY(-3px); }
 
-.card-icon {
-  font-size: 1.8rem;
-  display: block;
+.project-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   margin-bottom: 0.75rem;
 }
 
-.card h3 {
+.project-icon { font-size: 1.5rem; }
+
+.project-card h3 {
   font-size: 1rem;
-  margin-bottom: 0.5rem;
+  font-weight: 600;
   color: var(--text);
 }
 
-.card p {
+.project-card p {
   font-size: 0.875rem;
   color: var(--muted);
-}
-
-/* ── Contact ── */
-#contact p {
-  margin-bottom: 1.5rem;
+  min-height: 1.2rem;
 }
 
 /* ── Footer ── */
