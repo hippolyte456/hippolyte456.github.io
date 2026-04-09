@@ -13,16 +13,15 @@
     <nav class="navbar">
       <a href="#" class="nav-logo">Hippolyte Dreyfus</a>
       <ul class="nav-links">
-        <li><a href="#research">Research</a></li>
-        <li><a href="#lifestyle">Lifestyle</a></li>
-        <li><a href="#passion">Passion</a></li>
-        <li><a href="#psychiatrie">Psychiatrie</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- ① Research Engineer banner -->
-  <section id="research" class="banner-research">
+  <!-- About / Research Engineer banner -->
+  <section id="about" class="banner-research">
     <div class="banner-inner">
       <div class="banner-meta">Research Engineer · Neurosciences</div>
       <h1>Hippolyte Dreyfus</h1>
@@ -44,77 +43,38 @@
     </div>
   </section>
 
-  <!-- ② Lifestyle -->
-  <section id="lifestyle" class="project-section">
+  <!-- Projects -->
+  <section id="projects">
     <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Lifestyle</span>
-        <h2><!-- [Titre de la section] --></h2>
-        <p class="section-intro"><!-- [Introduction courte] --></p>
-      </div>
-      <div class="project-cards">
 
-        <div class="project-card" data-proj="projects/openhabitat.proj">
-          <div class="project-card-header">
-            <span class="project-icon">🏡</span>
-            <h3>OpenHabitat</h3>
-          </div>
-          <p class="proj-desc"></p>
+      <div class="proj-toolbar">
+        <h2>Projects</h2>
+        <div class="view-toggle">
+          <button class="toggle-btn active" data-view="category">By category</button>
+          <button class="toggle-btn" data-view="state">By state</button>
         </div>
-
-        <div class="project-card" data-proj="projects/heligoyourte.proj">
-          <div class="project-card-header">
-            <span class="project-icon">⛺</span>
-            <h3>Yourte</h3>
-          </div>
-          <p class="proj-desc"></p>
-        </div>
-
       </div>
+
+      <!-- Source registry (fetched by JS, not rendered directly) -->
+      <div id="proj-registry" hidden>
+        <div data-proj="projects/openhabitat.proj"   data-category="lifestyle"   data-icon="🏡" data-title="OpenHabitat"></div>
+        <div data-proj="projects/heligoyourte.proj"  data-category="lifestyle"   data-icon="⛺" data-title="Yourte"></div>
+        <div data-proj="projects/wing4all.proj"      data-category="passion"     data-icon="🌊" data-title="Wing4All"></div>
+        <div data-proj="projects/deepConnexion.proj" data-category="psychiatrie" data-icon="🧠" data-title="DeepConnexion"></div>
+      </div>
+
+      <!-- Views rendered by JS -->
+      <div id="view-category" class="proj-view"></div>
+      <div id="view-state"    class="proj-view"></div>
+
     </div>
   </section>
 
-  <!-- ③ Passion -->
-  <section id="passion" class="project-section alt">
+  <!-- Contact -->
+  <section id="contact">
     <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Passion</span>
-        <h2><!-- [Titre de la section] --></h2>
-        <p class="section-intro"><!-- [Introduction courte] --></p>
-      </div>
-      <div class="project-cards">
-
-        <div class="project-card" data-proj="projects/wing4all.proj">
-          <div class="project-card-header">
-            <span class="project-icon">🌊</span>
-            <h3>Wing4All</h3>
-          </div>
-          <p class="proj-desc"></p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ④ Psychiatrie -->
-  <section id="psychiatrie" class="project-section">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Psychiatrie</span>
-        <h2><!-- [Titre de la section] --></h2>
-        <p class="section-intro"><!-- [Introduction courte] --></p>
-      </div>
-      <div class="project-cards">
-
-        <div class="project-card" data-proj="projects/deepConnexion.proj">
-          <div class="project-card-header">
-            <span class="project-icon">🧠</span>
-            <h3>DeepConnexion</h3>
-          </div>
-          <p class="proj-desc"></p>
-        </div>
-
-      </div>
+      <h2>Get in touch</h2>
+      <p><!-- [Votre message ici] --></p>
     </div>
   </section>
 

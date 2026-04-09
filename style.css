@@ -225,6 +225,150 @@ header {
 }
 
 /* ══════════════════════════════
+   #PROJECTS SECTION
+══════════════════════════════ */
+#projects {
+  border-left: none;
+}
+
+#projects .section-inner {
+  padding-top: 4rem;
+}
+
+/* Toolbar */
+.proj-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.proj-toolbar h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Toggle buttons */
+.view-toggle {
+  display: flex;
+  background: rgba(255,255,255,0.05);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggle-btn.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Views */
+.proj-view { display: none; }
+.proj-view.active { display: block; }
+
+/* Groups */
+.proj-group {
+  margin-bottom: 2.5rem;
+}
+
+.proj-group-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-left: 0.25rem;
+}
+
+/* ══════════════════════════════
+   #PROJECTS SECTION
+══════════════════════════════ */
+#projects {
+  border-left: none;
+}
+
+#projects .section-inner {
+  padding-top: 4rem;
+}
+
+/* Toolbar */
+.proj-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.proj-toolbar h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Toggle buttons */
+.view-toggle {
+  display: flex;
+  background: rgba(255,255,255,0.05);
+  border-radius: 999px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.toggle-btn.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+/* Views */
+.proj-view { display: none; }
+.proj-view.active { display: block; }
+
+/* Groups */
+.proj-group {
+  margin-bottom: 2.5rem;
+}
+
+.proj-group-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-left: 0.25rem;
+}
+
+/* ══════════════════════════════
    PROJ CARD — footer injected by JS
 ══════════════════════════════ */
 .proj-card-footer {
