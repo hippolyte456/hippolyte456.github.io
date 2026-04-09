@@ -1,0 +1,32 @@
+{
+  "category": "lifestyle",
+  "icon": "🏡",
+  "title": "OpenHabitat",
+  "link": "https://openhabitat.net",
+  "what": {
+    "name": "OpenHabitat",
+    "description": "",
+    "domain": "lifestyle | technics",
+    "type": "software | construction"
+  },
+  "why": {
+    "economy_driven": 0,
+    "ego_driven": 0,
+    "commun_good_driven": 0,
+    "pleasure_driven": 0
+  },
+  "how": {
+    "time_per_week": "",
+    "duration": "",
+    "persons": "",
+    "skills": "",
+    "tools": "",
+    "cost": "",
+    "notes": ""
+  },
+  "state": {
+    "status": "current",
+    "progress": 0,
+    "steps": []
+  }
+}

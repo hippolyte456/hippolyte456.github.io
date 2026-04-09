@@ -419,6 +419,24 @@ header {
   white-space: nowrap;
 }
 
+.proj-link {
+  font-size: 0.75rem;
+  color: var(--accent);
+  white-space: nowrap;
+  margin-right: auto;
+}
+
+.proj-link:hover { text-decoration: underline; }
+
+.modal-link {
+  display: inline-block;
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.modal-link:hover { text-decoration: underline; }
+
 /* ══════════════════════════════
    MODAL OVERLAY
 ══════════════════════════════ */

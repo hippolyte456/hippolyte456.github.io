@@ -1,12 +1,10 @@
 /* ─────────────────────────────────────────
    proj-loader.js
-   Reads from window.PROJECTS (projects.js)
-   No fetch — works on file:// and GitHub Pages
+   Fetches projects/index.json then each .json
 ───────────────────────────────────────── */
 
 // ── Card HTML ─────────────────────────────
 function buildCard(entry, idx) {
-  const { icon, title } = entry;
   const desc     = entry.what.description || '';
   const status   = entry.state.status || '';
   const progress = Math.min(100, Math.max(0, parseInt(entry.state.progress) || 0));
@@ -15,11 +13,12 @@ function buildCard(entry, idx) {
   return `
     <div class="project-card" data-entry-id="${idx}">
       <div class="project-card-header">
-        <span class="project-icon">${icon}</span>
-        <h3>${title}</h3>
+        <span class="project-icon">${entry.icon}</span>
+        <h3>${entry.title}</h3>
       </div>
       <p class="proj-desc">${desc}</p>
       <div class="proj-card-footer">
+        ${entry.link ? `<a class="proj-link" href="${entry.link}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${entry.link.replace(/^https?:\/\//, '')}</a>` : ''}
         ${status ? `<span class="proj-badge ${statusClass}">${status}</span>` : ''}
         <div class="proj-progress-track">
           <div class="proj-progress-bar" style="width:${progress}%"></div>
@@ -42,7 +41,7 @@ const STATE_META = {
   archive : { label: 'Archive', color: 'var(--muted)'         },
 };
 
-// ── Render a view (category or state) ────
+// ── Render a view ─────────────────────────
 function renderView(container, groupKeys, metaMap, keyOf, entries) {
   const groups = {};
   entries.forEach((entry, idx) => {
@@ -92,7 +91,6 @@ let overlay = null;
 
 function buildModal(entry) {
   const { what, why, how, state, title } = entry;
-
   const whyKeys   = ['economy_driven', 'ego_driven', 'commun_good_driven', 'pleasure_driven'];
   const whyLabels = { economy_driven: 'Economy', ego_driven: 'Ego', commun_good_driven: 'Common good', pleasure_driven: 'Pleasure' };
 
@@ -120,6 +118,7 @@ function buildModal(entry) {
       <button class="modal-close" aria-label="Close">&#x2715;</button>
     </div>
     <p class="modal-desc">${what.description || '<em>No description yet.</em>'}</p>
+    ${entry.link ? `<a class="modal-link" href="${entry.link}" target="_blank" rel="noopener">${entry.link.replace(/^https?:\/\//, '')} ↗</a>` : ''}
     <div class="modal-meta">
       ${what.domain ? `<span>${what.domain}</span>` : ''}
       ${what.type   ? `<span>${what.type}</span>`   : ''}
@@ -154,10 +153,25 @@ function closeModal() {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 // ── Main ──────────────────────────────────
-(function () {
-  if (typeof PROJECTS === 'undefined' || !PROJECTS.length) {
-    console.warn('[proj-loader] PROJECTS not found. Did you include assets/projects.js?');
-    return;
+(async function () {
+  try {
+    const indexRes = await fetch('projects/index.json');
+    const filenames = await indexRes.json();
+
+    const entries = await Promise.all(
+      filenames.map(async file => {
+        try {
+          const res = await fetch('projects/' + file);
+          return await res.json();
+        } catch (e) {
+          console.warn('[proj-loader] Could not load', file, e);
+          return null;
+        }
+      })
+    );
+
+    initToggle(entries.filter(Boolean));
+  } catch (e) {
+    console.warn('[proj-loader] Could not load projects/index.json', e);
   }
-  initToggle(PROJECTS);
 })();

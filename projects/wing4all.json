@@ -1,0 +1,32 @@
+{
+  "category": "passion",
+  "icon": "🌊",
+  "title": "Wing4All",
+  "link": "https://wing4all.fr",
+  "what": {
+    "name": "Wing4All",
+    "description": "",
+    "domain": "lifestyle",
+    "type": "other"
+  },
+  "why": {
+    "economy_driven": 0,
+    "ego_driven": 0,
+    "commun_good_driven": 0,
+    "pleasure_driven": 0
+  },
+  "how": {
+    "time_per_week": "",
+    "duration": "",
+    "persons": "",
+    "skills": "",
+    "tools": "",
+    "cost": "",
+    "notes": ""
+  },
+  "state": {
+    "status": "current",
+    "progress": 0,
+    "steps": []
+  }
+}
