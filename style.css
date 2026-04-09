@@ -225,14 +225,56 @@ header {
 }
 
 /* ══════════════════════════════
-   #PROJECTS SECTION
+   #RESEARCH SECTION
 ══════════════════════════════ */
-#projects {
-  border-left: none;
+#research {
+  border-left: 4px solid var(--c-research);
 }
 
-#projects .section-inner {
-  padding-top: 4rem;
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.research-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.research-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--c-research);
+}
+
+.research-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.research-icon { font-size: 1.4rem; }
+
+.research-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.research-card .tags {
+  margin-bottom: 0.75rem;
+}
+
+.research-card p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  min-height: 1.2rem;
+}
 }
 
 /* Toolbar */
