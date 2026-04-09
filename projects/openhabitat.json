@@ -1,6 +1,7 @@
 {
   "category": "lifestyle",
   "icon": "🏡",
+  "logo": "assets/logos/openhabitat.png",
   "title": "OpenHabitat",
   "link": "https://openhabitat.net",
   "what": {

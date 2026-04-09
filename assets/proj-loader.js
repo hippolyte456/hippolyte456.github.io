@@ -13,7 +13,9 @@ function buildCard(entry, idx) {
   return `
     <div class="project-card" data-entry-id="${idx}">
       <div class="project-card-header">
-        <span class="project-icon">${entry.icon}</span>
+        ${entry.logo
+          ? `<img src="${entry.logo}" alt="${entry.title}" class="project-logo" />`
+          : `<span class="project-icon">${entry.icon}</span>`}
         <h3>${entry.title}</h3>
       </div>
       <p class="proj-desc">${desc}</p>
