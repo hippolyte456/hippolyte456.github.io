@@ -1,50 +1,19 @@
 /* ─────────────────────────────────────────
    proj-loader.js
+   Reads from window.PROJECTS (projects.js)
+   No fetch — works on file:// and GitHub Pages
 ───────────────────────────────────────── */
 
-// ── Parser ────────────────────────────────
-function parseProj(text) {
-  const proj = { what: {}, why: {}, how: {}, state: { steps: [] } };
-  let section = null;
-
-  for (const raw of text.split('\n')) {
-    const line = raw.trim();
-    if (!line) continue;
-
-    if (line.startsWith('## ')) {
-      section = line.slice(3).split(/\s/)[0].toLowerCase();
-      continue;
-    }
-
-    if (line.startsWith('- ') && section === 'state') {
-      proj.state.steps.push(line.slice(2).trim());
-      continue;
-    }
-
-    if (line.includes(':')) {
-      const idx = line.indexOf(':');
-      const key = line.slice(0, idx).trim().replace(/\s+/g, '_');
-      const val = line.slice(idx + 1).split('#')[0].trim();
-      if (!key || key.startsWith('#')) continue;
-      if      (section === 'what')  proj.what[key]  = val;
-      else if (section === 'why')   proj.why[key]   = val;
-      else if (section === 'how')   proj.how[key]   = val;
-      else if (section === 'state') proj.state[key] = val;
-    }
-  }
-  return proj;
-}
-
 // ── Card HTML ─────────────────────────────
-function buildCard(entry) {
-  const { proj, icon, title } = entry;
-  const desc     = proj.what.description || '';
-  const status   = proj.state.status || '';
-  const progress = Math.min(100, Math.max(0, parseInt(proj.state.progress) || 0));
+function buildCard(entry, idx) {
+  const { icon, title } = entry;
+  const desc     = entry.what.description || '';
+  const status   = entry.state.status || '';
+  const progress = Math.min(100, Math.max(0, parseInt(entry.state.progress) || 0));
   const statusClass = { current: 'badge-current', archive: 'badge-archive', future: 'badge-future' }[status] || '';
 
   return `
-    <div class="project-card" data-entry-id="${entry.id}">
+    <div class="project-card" data-entry-id="${idx}">
       <div class="project-card-header">
         <span class="project-icon">${icon}</span>
         <h3>${title}</h3>
@@ -60,7 +29,7 @@ function buildCard(entry) {
     </div>`;
 }
 
-// ── Group HTML ────────────────────────────
+// ── Metadata ──────────────────────────────
 const CATEGORY_META = {
   lifestyle   : { label: 'Lifestyle',   color: 'var(--c-lifestyle)'   },
   passion     : { label: 'Passion',     color: 'var(--c-passion)'     },
@@ -73,30 +42,28 @@ const STATE_META = {
   archive : { label: 'Archive', color: 'var(--muted)'         },
 };
 
-function buildGroup(label, color, entries) {
-  return `
-    <div class="proj-group">
-      <div class="proj-group-label" style="color:${color}">${label}</div>
-      <div class="project-cards">${entries.map(buildCard).join('')}</div>
-    </div>`;
-}
-
+// ── Render a view (category or state) ────
 function renderView(container, groupKeys, metaMap, keyOf, entries) {
   const groups = {};
-  for (const entry of entries) {
+  entries.forEach((entry, idx) => {
     const key = keyOf(entry) || '__other';
-    (groups[key] = groups[key] || []).push(entry);
-  }
+    (groups[key] = groups[key] || []).push({ entry, idx });
+  });
 
   container.innerHTML = groupKeys
     .filter(k => groups[k])
     .map(k => {
-      const meta = metaMap[k] || { label: k, color: 'var(--muted)' };
-      return buildGroup(meta.label, meta.color, groups[k]);
+      const meta  = metaMap[k] || { label: k, color: 'var(--muted)' };
+      const cards = groups[k].map(({ entry, idx }) => buildCard(entry, idx)).join('');
+      return `
+        <div class="proj-group">
+          <div class="proj-group-label" style="color:${meta.color}">${meta.label}</div>
+          <div class="project-cards">${cards}</div>
+        </div>`;
     }).join('');
 
   container.querySelectorAll('.project-card').forEach(card => {
-    const entry = entries.find(e => e.id === card.dataset.entryId);
+    const entry = entries[parseInt(card.dataset.entryId)];
     if (entry) { card.addEventListener('click', () => openModal(entry)); card.style.cursor = 'pointer'; }
   });
 }
@@ -108,7 +75,7 @@ function initToggle(entries) {
   const buttons      = document.querySelectorAll('.toggle-btn');
 
   renderView(viewCategory, ['lifestyle', 'passion', 'psychiatrie'], CATEGORY_META, e => e.category, entries);
-  renderView(viewState,    ['current', 'future', 'archive'],        STATE_META,    e => e.proj.state.status, entries);
+  renderView(viewState,    ['current', 'future', 'archive'],        STATE_META,    e => e.state.status, entries);
 
   function show(view) {
     viewCategory.classList.toggle('active', view === 'category');
@@ -124,8 +91,7 @@ function initToggle(entries) {
 let overlay = null;
 
 function buildModal(entry) {
-  const { proj, title } = entry;
-  const { what, why, how, state } = proj;
+  const { what, why, how, state, title } = entry;
 
   const whyKeys   = ['economy_driven', 'ego_driven', 'commun_good_driven', 'pleasure_driven'];
   const whyLabels = { economy_driven: 'Economy', ego_driven: 'Ego', commun_good_driven: 'Common good', pleasure_driven: 'Pleasure' };
@@ -144,14 +110,14 @@ function buildModal(entry) {
     .map(([k, v]) => `<tr><td>${k.replace(/_/g, ' ')}</td><td>${v}</td></tr>`)
     .join('');
 
-  const steps = state.steps
+  const steps = (state.steps || [])
     .map(s => `<li class="${s.startsWith('[x]') ? 'done' : ''}">${s.replace(/^\[.\]\s*/, '')}</li>`)
     .join('');
 
   return `
     <div class="modal-header">
       <h2>${what.name || title}</h2>
-      <button class="modal-close" aria-label="Close">✕</button>
+      <button class="modal-close" aria-label="Close">&#x2715;</button>
     </div>
     <p class="modal-desc">${what.description || '<em>No description yet.</em>'}</p>
     <div class="modal-meta">
@@ -181,31 +147,17 @@ function openModal(entry) {
 }
 
 function closeModal() {
-  overlay && overlay.classList.remove('open');
+  if (overlay) overlay.classList.remove('open');
   document.body.style.overflow = '';
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 // ── Main ──────────────────────────────────
-(async function () {
-  const registry = document.getElementById('proj-registry');
-  if (!registry) return;
-
-  const entries = await Promise.all(
-    [...registry.querySelectorAll('[data-proj]')].map(async (el, i) => {
-      const url = el.dataset.proj;
-      try {
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(res.status);
-        const proj = parseProj(await res.text());
-        return { id: String(i), url, proj, category: el.dataset.category || '', icon: el.dataset.icon || '', title: el.dataset.title || proj.what.name || url };
-      } catch (err) {
-        console.warn(`[proj-loader] Could not load ${url}:`, err);
-        return null;
-      }
-    })
-  );
-
-  initToggle(entries.filter(Boolean));
+(function () {
+  if (typeof PROJECTS === 'undefined' || !PROJECTS.length) {
+    console.warn('[proj-loader] PROJECTS not found. Did you include assets/projects.js?');
+    return;
+  }
+  initToggle(PROJECTS);
 })();
