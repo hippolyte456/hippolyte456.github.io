@@ -126,6 +126,7 @@ function buildModal(entry) {
       ${what.type   ? `<span>${what.type}</span>`   : ''}
     </div>
     <h3 class="modal-section-title">Why</h3>
+    ${why.text ? `<p class="modal-why-text">${why.text}</p>` : ''}
     <div class="modal-why">${whyBars}</div>
     <h3 class="modal-section-title">How</h3>
     ${howRows ? `<table class="modal-table">${howRows}</table>` : '<p class="muted">Not filled yet.</p>'}

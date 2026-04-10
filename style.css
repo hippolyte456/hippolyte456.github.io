@@ -56,6 +56,32 @@ header {
   font-weight: 700;
   font-size: 1rem;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(255,255,255,0.2);
+}
+
+.nav-avatar img {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
 }
 
 .nav-links {
@@ -615,6 +641,14 @@ section + section {
 
 /* WHY bars */
 .modal-why { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.modal-why-text {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  font-style: italic;
+}
 
 .modal-why-row {
   display: flex;

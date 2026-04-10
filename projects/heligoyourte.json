@@ -1,14 +1,16 @@
 {
-  "category": "lifestyle",
+  "category": "construction",
   "icon": "⛺",
-  "title": "Yourte",
+  "juridic_form": null,
+  "title": "Construire une heliyourte",
   "what": {
-    "name": "Heligo Yourte",
+    "name": "Construire une heliyourte",
     "description": "",
     "domain": "lifestyle",
     "type": "construction"
   },
   "why": {
+    "text": "Construire ma mini-maison était pour moi une étape importante pour gagner en autonomie au niveau individuel et pour pouvoir baisser le plus rapidement possible dans ma vie mes charges liées au logement.",
     "economy_driven": 0,
     "ego_driven": 0,
     "commun_good_driven": 0,
@@ -24,8 +26,8 @@
     "notes": ""
   },
   "state": {
-    "status": "current",
-    "progress": 0,
+    "status": "archive",
+    "progress": 100,
     "steps": []
   }
 }

@@ -1,5 +1,5 @@
 {
-  "category": "passion",
+  "category": "lifestyle",
   "icon": "🌊",
   "logo": "assets/logos/wing4all.png",
   "title": "Wing4All",
@@ -11,6 +11,7 @@
     "type": "other"
   },
   "why": {
+    "text": "Avoir une petite entreprise passion est pour moi un moyen de gagner un peu d'argent facilement avec ma passion, et donc de pouvoir augmenter légèrement les risques financiers pris avec d'autres projets : j'estime que je ne dois pas \"rely\" sur autre chose que mon travail d'ingé et ma micro-entreprise.",
     "economy_driven": 0,
     "ego_driven": 0,
     "commun_good_driven": 0,
