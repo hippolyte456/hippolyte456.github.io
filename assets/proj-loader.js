@@ -22,7 +22,7 @@ function buildCard(entry) {
   const title  = escapeHtml(entry.title);
   const visual = entry.logo
     ? `<img src="${escapeHtml(entry.logo)}" alt="${title}" class="project-logo" />`
-    : `<span class="project-icon">${entry.icon || ''}</span>`;
+    : (entry.icon ? `<span class="project-icon">${entry.icon}</span>` : '');
   const link = entry.link
     ? `<a class="proj-link" href="${escapeHtml(entry.link)}" target="_blank" rel="noopener">${escapeHtml(entry.link)}</a>`
     : '';
