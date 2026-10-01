@@ -1,6 +1,7 @@
 {
   "group": "pro",
   "icon": "🧲",
+  "logo": "assets/logos/simnibs.png",
   "title": "SimNIBS ecosystem",
   "status": "active",
   "link": "https://icm-frontlab-cdpr.github.io/simnibs-analyze/",

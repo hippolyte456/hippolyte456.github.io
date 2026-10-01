@@ -1,6 +1,7 @@
 {
   "group": "pro",
   "icon": "📱",
+  "logo": "assets/logos/feelback.svg",
   "title": "FeelBack",
   "status": "active",
   "link": "https://feelback-app.github.io/landing/",
