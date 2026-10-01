@@ -1,33 +1,8 @@
 {
-  "category": "construction",
+  "group": "perso",
   "icon": "⛺",
-  "juridic_form": null,
-  "title": "Construire une heliyourte",
-  "what": {
-    "name": "Construire une heliyourte",
-    "description": "",
-    "domain": "lifestyle",
-    "type": "construction"
-  },
-  "why": {
-    "text": "Construire ma mini-maison était pour moi une étape importante pour gagner en autonomie au niveau individuel et pour pouvoir baisser le plus rapidement possible dans ma vie mes charges liées au logement.",
-    "economy_driven": 0,
-    "ego_driven": 0,
-    "commun_good_driven": 0,
-    "pleasure_driven": 0
-  },
-  "how": {
-    "time_per_week": "",
-    "duration": "",
-    "persons": "",
-    "skills": "",
-    "tools": "",
-    "cost": "",
-    "notes": ""
-  },
-  "state": {
-    "status": "archive",
-    "progress": 100,
-    "steps": []
-  }
+  "title": "Héliyourte",
+  "status": "past",
+  "link": "",
+  "description": "Building a heliyurt."
 }

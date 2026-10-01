@@ -1,0 +1,9 @@
+{
+  "group": "pro",
+  "icon": "",
+  "logo": "assets/logos/feelback.png",
+  "title": "FeelBack",
+  "status": "active",
+  "link": "",
+  "description": "Commons-based psychiatric monitoring application combining computational psychiatry and machine learning."
+}

@@ -1,0 +1,8 @@
+{
+  "group": "pro",
+  "icon": "⚡",
+  "title": "SimNIBS ecosystem",
+  "status": "active",
+  "link": "",
+  "description": "Reusable Python tools and BIDS-compatible pipelines for brain stimulation modelling with SimNIBS, including a lightweight reader for SimNIBS outputs."
+}
