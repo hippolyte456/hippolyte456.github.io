@@ -1,7 +1,7 @@
 /* ─────────────────────────────────────────
    proj-loader.js
-   Fetches projects/index.json then each .json and renders
-   professional projects first, then the others.
+   Fetches projects/index.json then each .json,
+   renders professional projects first, then the others.
 ───────────────────────────────────────── */
 
 const STATUS_LABEL = { active: 'Active', past: 'Past', future: 'Future' };
@@ -17,20 +17,25 @@ function escapeHtml(s) {
   ));
 }
 
-function buildRow(entry) {
+function buildCard(entry) {
   const status = STATUS_LABEL[entry.status] ? entry.status : 'active';
+  const title  = escapeHtml(entry.title);
+  const visual = entry.logo
+    ? `<img src="${escapeHtml(entry.logo)}" alt="${title}" class="project-logo" />`
+    : `<span class="project-icon">${entry.icon || ''}</span>`;
   const link = entry.link
     ? `<a class="proj-link" href="${escapeHtml(entry.link)}" target="_blank" rel="noopener">${escapeHtml(entry.link)}</a>`
     : '';
 
   return `
-    <div class="row">
-      <div class="row-side">${STATUS_LABEL[status]}</div>
-      <div class="row-main">
-        <h3>${escapeHtml(entry.title)}</h3>
-        ${entry.description ? `<p>${escapeHtml(entry.description)}</p>` : ''}
-        ${link}
+    <div class="project-card">
+      <div class="project-card-header">
+        ${visual}
+        <h3>${title}</h3>
+        <span class="proj-badge badge-${status}">${STATUS_LABEL[status]}</span>
       </div>
+      ${entry.description ? `<p class="proj-desc">${escapeHtml(entry.description)}</p>` : ''}
+      ${link ? `<div class="proj-card-footer">${link}</div>` : ''}
     </div>`;
 }
 
@@ -42,8 +47,8 @@ function renderProjects(entries) {
       if (!items.length) return '';
       return `
         <div class="proj-group">
-          <h3 class="proj-group-label">${g.label}</h3>
-          ${items.map(buildRow).join('')}
+          <div class="proj-group-label">${g.label}</div>
+          <div class="project-cards">${items.map(buildCard).join('')}</div>
         </div>`;
     })
     .join('');

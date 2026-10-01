@@ -1,5 +1,7 @@
 {
   "group": "perso",
+  "icon": "🏡",
+  "logo": "assets/logos/openhabitat.png",
   "title": "OpenHabitat",
   "status": "active",
   "link": "https://openhabitat.net",

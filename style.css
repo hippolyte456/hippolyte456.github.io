@@ -1,205 +1,462 @@
-/* ─────────────────────────────────────────
-   Personal site – classic, sober template
-   Light page, one serif for headings, one sans for text,
-   a single blue accent.
-───────────────────────────────────────── */
-
-:root {
-  --bg: #ffffff;
-  --text: #1c2530;
-  --muted: #5b6670;
-  --rule: #d9dee3;
-  --accent: #1f4e79;
-  --max-w: 760px;
-  --side-w: 10.5rem;
-
-  --serif: Georgia, "Iowan Old Style", "Palatino Linotype", Palatino, "Times New Roman", serif;
-  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+/* ── Reset & base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --bg: #0f1117;
+  --surface: #1a1d27;
+  --accent: #6c8eff;
+  --text: #e2e8f0;
+  --muted: #8892a4;
+  --radius: 12px;
+  --max-w: 960px;
 
-html { scroll-behavior: smooth; scroll-padding-top: 4rem; }
+  /* couleurs par section */
+  --c-research: #6c8eff;
+  --c-lifestyle: #4caf82;
+  --c-passion:   #f2994a;
+  --c-psychiatrie: #a78bfa;
+}
+
+html { scroll-behavior: smooth; }
 
 body {
-  margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
-  font-size: 1rem;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.7;
 }
 
 a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
-a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+a:hover { text-decoration: underline; }
 
-p { margin: 0 0 0.6rem; }
-
-/* ── Header / navigation ── */
-.site-header {
-  border-bottom: 1px solid var(--rule);
-  background: var(--bg);
+/* ── Navbar ── */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(15, 17, 23, 0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
 }
 
-.nav {
+.navbar {
   max-width: var(--max-w);
   margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem 1.5rem;
+  align-items: center;
 }
 
-.nav-name {
-  font-family: var(--serif);
-  font-size: 1.05rem;
+.nav-logo {
   font-weight: 700;
+  font-size: 1rem;
   color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
-.nav-name:hover { text-decoration: none; }
+
+.nav-avatar {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  max-width: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid rgba(255,255,255,0.2);
+}
+
+.nav-avatar img {
+  width: 32px !important;
+  height: 32px !important;
+  max-width: 32px;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
 
 .nav-links {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.25rem;
-  font-size: 0.9rem;
+  gap: 2rem;
 }
-.nav-links a { color: var(--muted); }
-.nav-links a:hover { color: var(--accent); text-decoration: none; }
 
-/* ── Layout ── */
-main {
+.nav-links a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--text); text-decoration: none; }
+
+/* ══════════════════════════════
+   ① RESEARCH BANNER
+══════════════════════════════ */
+.banner-research {
+  background: linear-gradient(135deg, #111422 0%, #0f1117 100%);
+}
+
+.banner-inner {
   max-width: var(--max-w);
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 5rem 1.5rem 4rem;
 }
 
-section { padding: 2.5rem 0 0.5rem; }
-
-h1, h2, h3 { font-family: var(--serif); color: var(--text); line-height: 1.25; }
-
-h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin: 0 0 1.25rem;
-  padding-bottom: 0.4rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-h3 { font-size: 1.02rem; font-weight: 700; margin: 0 0 0.1rem; }
-
-h3.subsection {
-  font-size: 1.05rem;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--muted);
-  margin: 2rem 0 1rem;
-}
-
-.muted { color: var(--muted); }
-
-/* ── About ── */
-.about {
+/* About: two-column layout (text left, photos right) */
+.about-content {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2.5rem;
-  padding-top: 3.5rem;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
 }
 
-.about-text { flex: 1 1 auto; max-width: 34rem; }
-
-h1 {
-  font-size: clamp(2rem, 5vw, 2.6rem);
-  font-weight: 700;
-  margin: 0 0 0.25rem;
+.about-text {
+  flex: 1 1 380px;
 }
 
-.role {
-  font-family: var(--serif);
-  font-size: 1.15rem;
-  font-style: italic;
-  color: var(--muted);
-  margin-bottom: 1.25rem;
-}
-
-.lead { font-size: 1.08rem; }
-
-.portrait {
+.about-photos {
   flex: 0 0 auto;
-  width: 150px;
-  height: auto;
-  border-radius: 4px;
-  border: 1px solid var(--rule);
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
 }
 
-/* ── Rows: a left column (date, label, status) and the content ── */
-.row {
-  display: grid;
-  grid-template-columns: var(--side-w) 1fr;
-  gap: 0 1.5rem;
-  padding: 0.85rem 0;
+.profil-photo {
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  display: block;
 }
 
-.row + .row { border-top: 1px solid #eef1f4; }
+.profil-photo--main {
+  width: 160px;
+  height: 200px;
+}
 
-.row-side {
-  font-size: 0.9rem;
+.profil-photo--secondary {
+  width: 120px;
+  height: 155px;
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .about-photos { display: none; }
+}
+
+.banner-meta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--c-research);
+  margin-bottom: 0.75rem;
+}
+
+.banner-inner h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.banner-desc {
+  font-size: 1.1rem;
   color: var(--muted);
-  font-variant-numeric: tabular-nums;
-  padding-top: 0.1rem;
+  max-width: 620px;
+  margin-bottom: 1.75rem;
+  min-height: 1.5rem; /* espace réservé quand vide */
 }
 
-.row-main p { color: var(--text); }
-.row-main .org { color: var(--muted); font-size: 0.95rem; margin-bottom: 0.35rem; }
-.row-main > :last-child { margin-bottom: 0; }
+/* Tags technos */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
 
-.section-intro { max-width: 36rem; color: var(--muted); margin-bottom: 0.75rem; }
+.tag {
+  background: rgba(108, 142, 255, 0.12);
+  border: 1px solid rgba(108, 142, 255, 0.3);
+  color: var(--c-research);
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
 
-/* ── Projects ── */
-.proj-group + .proj-group { margin-top: 2rem; }
+.banner-body {
+  color: var(--muted);
+  max-width: 680px;
+  min-height: 1.5rem;
+}
+
+/* Séparateur bleu entre chaque section */
+section + section {
+  border-top: 2px solid var(--c-research);
+}
+
+/* ══════════════════════════════
+   ② – ④ PROJECT SECTIONS
+══════════════════════════════ */
+.project-section {
+}
+
+.project-section.alt {
+  background: rgba(255,255,255,0.015);
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+/* label coloré par section */
+#lifestyle  .section-label { color: var(--c-lifestyle); }
+#passion    .section-label { color: var(--c-passion); }
+#psychiatrie .section-label { color: var(--c-psychiatrie); }
+
+#lifestyle   { }
+#passion     { }
+#psychiatrie { }
+
+.section-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+  min-height: 1.8rem;
+}
+
+.section-intro {
+  color: var(--muted);
+  max-width: 580px;
+  margin-bottom: 2rem;
+  min-height: 1.5rem;
+}
+
+/* Project cards grid */
+.project-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+#lifestyle  .project-card:hover { border-color: var(--c-lifestyle);  transform: translateY(-3px); }
+#passion    .project-card:hover { border-color: var(--c-passion);    transform: translateY(-3px); }
+#psychiatrie .project-card:hover{ border-color: var(--c-psychiatrie);transform: translateY(-3px); }
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.project-icon { font-size: 1.5rem; }
+.project-logo {
+  height: 36px;
+  max-width: 120px;
+  object-fit: contain;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.project-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.project-card p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  min-height: 1.2rem;
+}
+
+/* ══════════════════════════════
+   #RESEARCH SECTION
+══════════════════════════════ */
+#research {
+}
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.research-card {
+  background: var(--surface);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.research-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--c-research);
+}
+
+.research-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+
+.research-icon { font-size: 1.4rem; }
+
+.research-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.research-card .tags {
+  margin-bottom: 0.75rem;
+}
+
+.research-card p {
+  font-size: 0.875rem;
+  color: var(--muted);
+  min-height: 1.2rem;
+}
+
+/* Toolbar */
+.proj-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.proj-toolbar h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Groups */
+.proj-group {
+  margin-bottom: 2.5rem;
+}
 
 .proj-group-label {
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  font-style: italic;
-  color: var(--muted);
-  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-left: 0.25rem;
 }
 
-.proj-link { display: inline-block; font-size: 0.9rem; margin-top: 0.2rem; overflow-wrap: anywhere; }
-
-/* ── Contact / footer ── */
-#contact { padding-bottom: 2rem; }
-
-.site-footer {
-  max-width: var(--max-w);
-  margin: 2rem auto 0;
-  padding: 1.25rem 1.5rem 2.5rem;
-  border-top: 1px solid var(--rule);
-  font-size: 0.85rem;
-  color: var(--muted);
+/* ══════════════════════════════
+   #PROJECTS SECTION
+══════════════════════════════ */
+#projects {
 }
 
-/* ── Small screens ── */
-@media (max-width: 640px) {
-  .about { flex-direction: column-reverse; gap: 1.5rem; padding-top: 2.5rem; }
-  .portrait { width: 110px; }
-
-  .row { grid-template-columns: 1fr; }
-  .row-side { margin-bottom: 0.15rem; }
+#projects .section-inner {
+  padding-top: 4rem;
 }
 
-/* ── Print: behave like a CV ── */
-@media print {
-  .site-header, .site-footer .nav, .portrait { display: none; }
-  section { padding-top: 1.25rem; break-inside: avoid-page; }
-  a { color: inherit; }
+/* Toolbar */
+.proj-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }
+
+.proj-toolbar h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* Groups */
+.proj-group {
+  margin-bottom: 2.5rem;
+}
+
+.proj-group-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  padding-left: 0.25rem;
+}
+
+/* ══════════════════════════════
+   PROJ CARD — footer injected by JS
+══════════════════════════════ */
+.proj-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+
+.proj-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.badge-active  { background: rgba(76,175,130,0.15); color: var(--c-lifestyle); }
+.badge-past { background: rgba(136,146,164,0.15); color: var(--muted); }
+.badge-future  { background: rgba(167,139,250,0.15); color: var(--c-psychiatrie); }
+
+.proj-link {
+  font-size: 0.75rem;
+  color: var(--accent);
+  overflow-wrap: anywhere;
+  margin-right: auto;
+}
+
+.proj-link:hover { text-decoration: underline; }
+
+/* Project cards: badge next to title, single-column list on small screens */
+.project-card-header h3 { flex: 1; }
+.proj-card-footer { border-top: none; padding-top: 0; margin-top: 0.75rem; }
