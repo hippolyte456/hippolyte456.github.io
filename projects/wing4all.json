@@ -1,9 +1,7 @@
 {
   "group": "perso",
-  "icon": "🌊",
-  "logo": "assets/logos/wing4all.png",
   "title": "Wing4All",
   "status": "active",
   "link": "https://wing4all.fr",
-  "description": "Marketplace and social platform for watersports enthusiasts."
+  "description": "Wingfoil equipment rental and a web platform, with the aim of making wingfoiling more accessible."
 }

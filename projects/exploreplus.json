@@ -1,8 +1,7 @@
 {
   "group": "pro",
-  "icon": "🧠",
   "title": "Explore Plus",
   "status": "active",
   "link": "https://computationalbrainteam.com/en/publication/learning-and-goal-directed-decision-making-41",
-  "description": "Research project on learning and goal-directed decision making: how the human brain uses representations of uncertainty to learn and to arbitrate between exploring and exploiting."
+  "description": "Study of human decision making under uncertainty, combining MEG and 7T MRI, as part of research on learning and goal-directed decision making."
 }

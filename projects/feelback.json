@@ -1,9 +1,7 @@
 {
   "group": "pro",
-  "icon": "",
-  "logo": "assets/logos/feelback.png",
   "title": "FeelBack",
   "status": "active",
   "link": "",
-  "description": "Commons-based psychiatric monitoring application combining computational psychiatry and machine learning."
+  "description": "Mental health app designed to make it easier to integrate physiological data while keeping the patient at the center of their own care."
 }
