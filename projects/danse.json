@@ -1,0 +1,11 @@
+{
+  "group": "perso",
+  "title": "Danse portfolio",
+  "status": "active",
+  "link": "",
+  "description": "A selection of my dance videos.",
+  "videos": [
+    "https://www.youtube.com/watch?v=1kRD-9bEpko",
+    "https://youtu.be/0x6oYYhrVaM"
+  ]
+}

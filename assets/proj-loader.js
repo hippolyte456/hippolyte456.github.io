@@ -28,10 +28,10 @@ function buildCard(entry) {
     : '';
 
   return `
-    <div class="project-card">
+    <div class="project-card" data-href="project.html?id=${encodeURIComponent(entry.id)}">
       <div class="project-card-header">
         ${visual}
-        <h3>${title}</h3>
+        <h3><a class="proj-title-link" href="project.html?id=${encodeURIComponent(entry.id)}">${title}</a></h3>
         <span class="proj-badge badge-${status}">${STATUS_LABEL[status]}</span>
       </div>
       ${entry.description ? `<p class="proj-desc">${escapeHtml(entry.description)}</p>` : ''}
@@ -52,6 +52,15 @@ function renderProjects(entries) {
         </div>`;
     })
     .join('');
+
+  // The whole card is clickable (the title is a real link for keyboard / no-JS use);
+  // clicks on the external link keep their own behaviour.
+  container.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      window.location.href = card.dataset.href;
+    });
+  });
 }
 
 (async function () {
@@ -59,7 +68,7 @@ function renderProjects(entries) {
     const filenames = await (await fetch('projects/index.json')).json();
     const entries = await Promise.all(
       filenames.map(async file => {
-        try { return await (await fetch('projects/' + file)).json(); }
+        try { return { ...(await (await fetch('projects/' + file)).json()), id: file.replace(/\.json$/, '') }; }
         catch (e) { console.warn('[proj-loader] Could not load', file, e); return null; }
       })
     );
