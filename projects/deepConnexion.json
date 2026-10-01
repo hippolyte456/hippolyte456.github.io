@@ -1,15 +1,13 @@
 {
-  "category": "lifestyle",
-  "icon": "🏡",
-  "logo": "assets/logos/openhabitat.png",
-  "juridic_form": "Association",
-  "title": "OpenHabitat",
-  "link": "https://openhabitat.net",
+  "category": "psychiatrie",
+  "icon": "🧠",
+  "juridic_form": null,
+  "title": "DeepConnexion",
   "what": {
-    "name": "OpenHabitat",
+    "name": "DeepConnexion",
     "description": "",
-    "domain": "lifestyle | technics",
-    "type": "software | construction"
+    "domain": "science | psychiatrie",
+    "type": "other"
   },
   "why": {
     "economy_driven": 0,
