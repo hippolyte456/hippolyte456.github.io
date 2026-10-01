@@ -20,7 +20,7 @@ function escapeHtml(s) {
 function buildRow(entry) {
   const status = STATUS_LABEL[entry.status] ? entry.status : 'active';
   const link = entry.link
-    ? `<a class="proj-link" href="${escapeHtml(entry.link)}" target="_blank" rel="noopener">${escapeHtml(new URL(entry.link).hostname.replace(/^www\./, ''))}</a>`
+    ? `<a class="proj-link" href="${escapeHtml(entry.link)}" target="_blank" rel="noopener">${escapeHtml(entry.link)}</a>`
     : '';
 
   return `
